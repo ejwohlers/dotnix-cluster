@@ -1,0 +1,4 @@
+# Dummy config to silence pre-commit CLI in this Nix-native repo
+# All actual checks are defined in flake.nix / lib/checks.nix
+
+repos: []
