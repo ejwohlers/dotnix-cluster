@@ -1,19 +1,26 @@
-_: {
-  time.timeZone = "UTC";
+{ config, pkgs, lib, ... }:
+
+{
+  imports = [ ];
+
+  networking.hostName = lib.mkDefault "changeme"; # Will be overridden by each host
+
+  time.timeZone = "America/Bogota"; # Adjust if needed
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.openssh.enable = true;
-  users.users.ed = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-    hashedPassword = "..."; # or null for passwordless + SSH only
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "prohibit-password";
+    settings.PasswordAuthentication = false;
+  };
+
+  users.users.root = {
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1..." # replace with your real SSH key
+      # Replace with your actual public key!
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ..."
     ];
   };
 
-  # Minimal packages
-  environment.systemPackages = with pkgs; [ vim git curl ];
-
-  networking.firewall.enable = false;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  system.stateVersion = "23.11";
 }
