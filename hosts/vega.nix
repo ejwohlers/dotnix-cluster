@@ -1,5 +1,9 @@
 _: {
-  imports = [ ../modules/base.nix ];
+  imports = [
+    ../modules/base.nix
+    ../modules/k8s-worker.nix
+    ../modules/secrets.nix
+  ];
 
   networking.hostName = "vega";
   networking.interfaces.enp0s31f6.useDHCP = true;

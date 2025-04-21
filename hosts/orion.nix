@@ -1,5 +1,9 @@
 _: {
-  imports = [ ../modules/base.nix ];
+  imports = [
+    ../modules/base.nix
+    ../modules/k8s-master.nix
+    ../modules/secrets.nix
+  ];
 
   networking.hostName = "orion";
   networking.interfaces.enp0s31f6.useDHCP = true;

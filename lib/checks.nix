@@ -1,15 +1,14 @@
-# lib/checks.nix
 { pkgs }:
 
 {
   fmt = pkgs.writeShellApplication {
     name = "fmt";
-    runtimeInputs = with pkgs; [ nixpkgs-fmt ];
+    runtimeInputs = [ pkgs.nixpkgs-fmt ];
     text = "nixpkgs-fmt .";
   };
 
   statix = pkgs.writeShellApplication {
-    name = "statix-check";
+    name = "statix";
     runtimeInputs = [ pkgs.statix ];
     text = "statix check .";
   };

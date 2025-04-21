@@ -1,0 +1,4 @@
+".config/sops/"
+"keys.txt"
+*.key
+*.secret
